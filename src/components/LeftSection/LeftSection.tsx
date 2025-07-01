@@ -1,7 +1,7 @@
 import styles from './LeftSection.module.css';
 import Select from '../Selects/Select/Select.tsx';
 import Button from '../Buttons/button.tsx';
-import Education from '../sections/Education/Education.tsx';
+import EducationSection from '../sections/Education/EducationSection.tsx';
 import Skills from '../sections/Skills/Skills.tsx';
 import Sertificates from '../sections/Sertificates/Sertificates.tsx';
 import About from '../sections/About/About.tsx';
@@ -9,7 +9,7 @@ import type { JSX } from 'react';
 import { useState } from 'react';
 
 const sectionMap: Record<string, JSX.Element> = {
-  Education: <Education />,
+  Education: <EducationSection />,
   Skills: <Skills />,
   Sertificates: <Sertificates />,
   About: <About />
@@ -24,9 +24,6 @@ const LeftSection = () => {
       setSections((prev) => [...prev, selected]);
     }
   };
-
-  console.log(sections);
-  console.log(sectionMap);
   return (
     <div className={styles.section}>
       <Select
@@ -58,11 +55,9 @@ const LeftSection = () => {
         Добавить
       </Button>
 
-      <div>
+      <div className={styles.sectionsList}>
         {sections.map((key) => (
-          <div key={key} style={{ marginBottom: '12px' }}>
-            {sectionMap[key]}
-          </div>
+          <div key={key}>{sectionMap[key]}</div>
         ))}
       </div>
     </div>
