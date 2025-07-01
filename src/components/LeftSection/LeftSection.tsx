@@ -2,17 +2,17 @@ import styles from './LeftSection.module.css';
 import Select from '../Selects/Select/Select.tsx';
 import Button from '../Buttons/button.tsx';
 import EducationSection from '../sections/Education/EducationSection.tsx';
-import Skills from '../sections/Skills/Skills.tsx';
-import Sertificates from '../sections/Sertificates/Sertificates.tsx';
-import About from '../sections/About/About.tsx';
+import SkillsSection from '../sections/Skills/SkillsSection.tsx';
+import SertificatesSection from '../sections/Certificates/CertificatesSection.tsx';
+import AboutSection from '../sections/About/AboutSection.tsx';
 import type { JSX } from 'react';
 import { useState } from 'react';
 
 const sectionMap: Record<string, JSX.Element> = {
   Education: <EducationSection />,
-  Skills: <Skills />,
-  Sertificates: <Sertificates />,
-  About: <About />
+  Skills: <SkillsSection />,
+  Sertificates: <SertificatesSection />,
+  About: <AboutSection />
 };
 
 const LeftSection = () => {

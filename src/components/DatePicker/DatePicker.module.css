@@ -1,0 +1,149 @@
+.datePicker {
+  position: relative;
+  width: 100%;
+}
+
+.calendarWrapper {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1000;
+  background: white;
+  margin-top: 4px;
+  width: 280px;
+  border-radius: 12px;
+  border: 1px solid var(--caption-color);
+}
+
+.dateInput {
+  width: 100%;
+  border: 0;
+  font-family: var(--font-main);
+  font-weight: 400;
+  padding-left: 6px;
+  letter-spacing: 0.02em;
+  color: var(--caption-color);
+  font-size: 1rem;
+  cursor: pointer;
+  height: 1.5rem;
+  outline: none;
+}
+
+.calendar {
+  border: 0;
+  border-radius: 12px;
+}
+
+.calendarButtons {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 8px;
+  padding-bottom: 16px;
+  padding-inline: 16px;
+  gap: 8px;
+}
+
+.calendarButton {
+  width: 100%;
+  padding-inline: 24px;
+  font-family: var(--font-main);
+  font-size: 1rem;
+}
+
+:global(.react-calendar) {
+  padding: 0 28px 16px;
+}
+
+:global(.react-calendar__navigation) {
+  margin: 14px 0 0;
+  height: auto;
+}
+
+:global(.react-calendar__month-view__weekdays) {
+  font-weight: bold;
+  font-size: 0.875rem;
+  color: var(--caption-color);
+  text-transform: capitalize;
+  text-align: center;
+}
+
+:global(.react-calendar__month-view__weekdays__weekday) {
+  padding: 0.5rem 0;
+  text-align: center;
+}
+
+:global(.react-calendar__month-view__weekdays__weekday abbr) {
+  text-decoration: none;
+  font-family: var(--font-main);
+  font-weight: 400;
+  font-size: 0.75rem;
+  line-height: 133%;
+  letter-spacing: 0.02em;
+  color: var(--accent-color);
+}
+
+:global(.react-calendar__tile) {
+  font-size: 0.75rem;
+  padding: 6px;
+}
+
+:global(.react-calendar__tile--active),
+:global(.react-calendar__tile--active:hover),
+:global(.react-calendar__tile--active:enabled:hover),
+:global(.react-calendar__tile--active:enabled:focus) {
+  border-radius: 50%;
+  color: inherit;
+  background-color: var(--accent-color);
+}
+
+:global(.react-calendar__tile--neighboringMonth) {
+  color: var(--caption-color) !important;
+}
+
+:global(.react-calendar__month-view__days__day--weekend) {
+  color: inherit;
+}
+
+.customNavigation {
+  display: flex;
+  justify-content: center;
+  font-family: var(--font-main);
+}
+
+.monthSelector,
+.yearSelector {
+  position: relative;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding-left: 16px;
+  padding-block: 8px;
+  padding-right: 8px;
+  border-radius: 4px;
+}
+
+.monthSelector:hover,
+.yearSelector:hover {
+  background: #f0f0f0;
+}
+
+.dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  z-index: 10;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.dropdown div {
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.dropdown div:hover {
+  background: #f0f0f0;
+}
