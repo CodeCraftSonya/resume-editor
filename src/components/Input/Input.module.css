@@ -1,0 +1,74 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 4px;
+}
+
+.inputContainer {
+  display: flex;
+  align-items: flex-end;
+  border: 0.0625rem solid var(--caption-color);
+  border-radius: 0.75rem;
+  background-color: var(--card-input-color);
+  padding: 11px;
+  min-width: 200px;
+  max-width: 32.9375rem;
+  width: 100%;
+}
+
+.typeSearch {
+  border-color: var(--card-input-color);
+}
+
+.input {
+  width: 100%;
+  height: 1.5rem;
+  border-radius: 0.25rem;
+  border: 0.0625rem solid var(--card-input-color);
+  outline: none;
+  caret-color: var(--text-link-button-pressed-color);
+  color: var(--text-color);
+  font-size: 16px;
+}
+
+.input::placeholder {
+  font-family: var(--font-main);
+  font-weight: 400;
+  padding-left: 6px;
+  letter-spacing: 0.02em;
+  color: var(--caption-color);
+}
+
+.label {
+  font-family: var(--font-main);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  letter-spacing: 0.02em;
+  color: var(--text-color);
+}
+
+.rightIcon {
+  /* really ? */
+  line-height: 0;
+  margin-left: auto;
+  padding-right: 0.5rem;
+  padding-block: 2px;
+}
+
+.error {
+  border-color: var(--error-color);
+}
+
+.errorText {
+  color: var(--error-color);
+  font-size: var(--caption-font-size);
+  line-height: var(--caption-font-line-height);
+}
+
+.infoText {
+  color: var(--text-color);
+  font-size: var(--caption-font-size);
+  line-height: var(--caption-font-line-height);
+}

@@ -1,0 +1,60 @@
+.primary,
+.secondary,
+.tertiary {
+  border-radius: 0.75rem;
+  padding: 0.75rem 2.125rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.primary {
+  background-color: var(--accent-color);
+  border: 1px solid var(--accent-color);
+  color: var(--text-color);
+}
+
+.primary:hover {
+  background-color: var(--button-hover-color);
+  border-color: var(--button-hover-color);
+}
+
+.primary:active {
+  background-color: var(--text-link-button-pressed-color);
+  border-color: var(--text-link-button-pressed-color);
+  color: #fff;
+}
+
+.primary:disabled {
+  background-color: var(--disabled-color);
+  border-color: var(--disabled-color);
+  color: var(--disabled-text-color);
+  cursor: not-allowed;
+}
+
+.secondary {
+  background-color: var(--card-input-color);
+  border: 1px solid var(--accent-color);
+  color: var(--text-color);
+}
+
+.secondary:hover {
+  border-color: var(--button-hover-color);
+  color: var(--caption-color);
+}
+
+.secondary:active {
+  border-color: var(--text-link-button-pressed-color);
+  color: var(--text-color);
+}
+
+.secondary:disabled {
+  border-color: var(--disabled-color);
+  color: var(--disabled-text-color);
+  cursor: not-allowed;
+}
+
+.tertiary {
+  background-color: var(--card-input-color);
+  border: 1px solid transparent;
+  color: var(--text-color);
+}

@@ -1,68 +1,120 @@
+/*@font-face {*/
+/*  font-family: Jost;*/
+/*  src:*/
+/*          url('/fonts/Jost-Variable.woff2') format('woff2 supports variations'),*/
+/*          url('/fonts/Jost-Variable.woff2') format('woff2-variations');*/
+/*  font-weight: 100 900;*/
+/*  font-display: swap;*/
+/*}*/
+
+/*@font-face {*/
+/*  font-family: Roboto;*/
+/*  src:*/
+/*          url('/fonts/Roboto-Variable.woff2') format('woff2 supports variations'),*/
+/*          url('/fonts/Roboto-Variable.woff2') format('woff2-variations');*/
+/*  font-weight: 100 900;*/
+/*  font-display: swap;*/
+/*}*/
+
+/*@font-face {*/
+/*  font-family: 'Open Sans';*/
+/*  src:*/
+/*          url('/fonts/OpenSans-Variable.woff2') format('woff2 supports variations'),*/
+/*          url('/fonts/OpenSans-Variable.woff2') format('woff2-variations');*/
+/*  font-weight: 300 800;*/
+/*  font-display: swap;*/
+/*}*/
+
+/*@font-face {*/
+/*  font-family: Inter;*/
+/*  src:*/
+/*          url('/fonts/Inter-Variable.woff2') format('woff2 supports variations'),*/
+/*          url('/fonts/Inter-Variable.woff2') format('woff2-variations');*/
+/*  font-weight: 100 900;*/
+/*  font-display: swap;*/
+/*}*/
+
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  --font-main: 'Roboto', sans-serif;
+  --font-heading: 'Jost', sans-serif;
+  --font-card-name: 'Open Sans', sans-serif;
+  --font-more-pictures: 'Inter', sans-serif;
+  --caption-font-size: 12px;
+  --caption-font-line-height: 1.33;
+  --text-color: #253017;
+  --caption-color: #69735d;
+  --disabled-text-color: #9ca197;
+  --toggle-color: #b2b9a9;
+  --disabled-color: #e4e8df;
+  --card-input-color: #fff;
+  --text-link-button-pressed-color: #508826;
+  --accent-color: #abd27a;
+  --button-hover-color: #deebc5;
+  --background-color: #f9faf7;
+  --footer-color: #fff;
+  --alarm-color: #e0796e;
+  --error-color: #bf3920;
+  --tag-business-color: #eee7f7;
+  --tag-creativity-color: #f7e7f2;
+  --tag-languages-color: #ebe5c5;
+  --tag-education-color: #e7f2f6;
+  --tag-home-color: #f7ebe5;
+  --tag-health-color: #e9f7e7;
+  --tag-plus-color: #e8ecf7;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
-body {
+*,
+*::before,
+*::after {
   margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-heading);
+  font-weight: 500;
 }
 
 h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+  font-size: 32px;
+  line-height: 1.25;
+  letter-spacing: -0.011em;
+}
+
+h2 {
+  font-size: 24px;
+  line-height: 1.33;
+  letter-spacing: -0.011em;
+}
+
+h3 {
+  font-size: 20px;
+  line-height: 1.2;
+  letter-spacing: -0.011em;
+}
+
+h4 {
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: 0.02em;
 }
 
 button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  padding-block: 0;
+  padding-inline: 0;
+  margin: 0;
   cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+  appearance: none;
+  font-family: inherit;
+  font-size: inherit;
+  font-style: inherit;
+  font-weight: inherit;
+  line-height: inherit;
 }

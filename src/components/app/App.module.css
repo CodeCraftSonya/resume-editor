@@ -1,0 +1,7 @@
+.appСontainer {
+  display: flex;
+  gap: 20px;
+  height: 100vh;
+  padding: 20px;
+  box-sizing: border-box;
+}
