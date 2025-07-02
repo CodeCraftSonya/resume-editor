@@ -5,6 +5,7 @@ import { FaPlus } from 'react-icons/fa6';
 import { FaRegEdit } from 'react-icons/fa';
 import { MdDeleteOutline } from 'react-icons/md';
 import type { AboutProps } from './types';
+import Modal from '../../modal/Modal.tsx';
 
 const AboutSection = ({ onDeleteSection, data, setData }: AboutProps) => {
   const [tempText, setTempText] = useState('');
@@ -82,29 +83,22 @@ const AboutSection = ({ onDeleteSection, data, setData }: AboutProps) => {
       )}
 
       {isEditing && (
-        <div className={styles.formOverlay}>
-          <div className={styles.form} ref={formRef}>
-            <button
-              className={styles.closeBtn}
-              onClick={() => setIsEditing(false)}
-            >
-              ×
-            </button>
-            <textarea
-              placeholder='Напишите что-нибудь о себе...'
-              value={tempText}
-              onChange={(e) => setTempText(e.target.value)}
-            />
-            <Button
-              type='primary'
-              htmlType='submit'
-              className={styles.nextButton}
-              onClick={handleSave}
-            >
-              Сохранить
-            </Button>
-          </div>
-        </div>
+        <Modal onClose={() => setIsEditing(false)}>
+          <textarea
+            placeholder='Напишите что-нибудь о себе...'
+            value={tempText}
+            onChange={(e) => setTempText(e.target.value)}
+            className={styles.textarea}
+          />
+          <Button
+            type='primary'
+            htmlType='submit'
+            className={styles.nextButton}
+            onClick={handleSave}
+          >
+            Сохранить
+          </Button>
+        </Modal>
       )}
     </div>
   );

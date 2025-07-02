@@ -6,6 +6,7 @@ import { MdDeleteOutline } from 'react-icons/md';
 import { FaRegEdit } from 'react-icons/fa';
 import type { SkillsProps } from './types';
 import Input from '../../Input/Input.tsx';
+import Modal from '../../modal/Modal.tsx';
 
 const SkillsSection = ({ onDeleteSection, data, setData }: SkillsProps) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -85,37 +86,34 @@ const SkillsSection = ({ onDeleteSection, data, setData }: SkillsProps) => {
       </div>
 
       {isModalOpen && (
-        <div className={styles.modalBackdrop}>
-          <div className={styles.modal} ref={modalRef}>
-            <div className={styles.modalHeader}>
-              <h3>Редактировать навыки</h3>
-              <button onClick={() => setIsModalOpen(false)}>×</button>
-            </div>
-            <Input
-              type='text'
-              value={newSkill}
-              onChange={(e) => setNewSkill(e.target.value)}
-              placeholder='Введите навык'
-              maxLength={20}
-            />
-            <Button type='primary' htmlType='submit' onClick={handleAddSkill}>
-              Добавить навык
-            </Button>
-            <div className={styles.skillsEditList}>
-              {data.map((skill) => (
-                <div className={styles.skillPill} key={skill}>
-                  {skill}
-                  <button
-                    className={styles.removePill}
-                    onClick={() => handleRemoveSkill(skill)}
-                  >
-                    ×
-                  </button>
-                </div>
-              ))}
-            </div>
+        <Modal onClose={() => setIsModalOpen(false)}>
+          <div className={styles.modalHeader}>
+            <h3>Редактировать навыки</h3>
           </div>
-        </div>
+          <Input
+            type='text'
+            value={newSkill}
+            onChange={(e) => setNewSkill(e.target.value)}
+            placeholder='Введите навык'
+            maxLength={20}
+          />
+          <Button type='primary' htmlType='submit' onClick={handleAddSkill}>
+            Добавить навык
+          </Button>
+          <div className={styles.skillsEditList}>
+            {data.map((skill) => (
+              <div className={styles.skillPill} key={skill}>
+                {skill}
+                <button
+                  className={styles.removePill}
+                  onClick={() => handleRemoveSkill(skill)}
+                >
+                  ×
+                </button>
+              </div>
+            ))}
+          </div>
+        </Modal>
       )}
     </div>
   );

@@ -5,6 +5,7 @@ import Input from '../../Input/Input.tsx';
 import Button from '../../Buttons/button.tsx';
 import { educationOptions } from '../../../constants/educationOptions.ts';
 import type { EducationFormProps } from './types.ts';
+import Modal from '../../modal/Modal.tsx';
 
 const EducationForm = ({
   onClose,
@@ -34,54 +35,45 @@ const EducationForm = ({
   };
 
   return (
-    <div className={styles.overlay}>
-      <div className={styles.formWrapper} ref={formRef}>
-        <button className={styles.closeBtn} onClick={onClose}>
-          ×
-        </button>
-        <form onSubmit={handleSubmit} className={styles.form}>
-          <Select
-            id='levelSelect'
-            label='Уровень образования'
-            value={level}
-            onChange={(e) => setLevel(e.target.value)}
-            options={educationOptions}
-            rightIcon={
-              <img
-                src='/icons/chevron-down.svg'
-                alt='Стрелка вниз'
-                // className={styles.arrow}
-              />
-            }
-          />
-          <Input
-            id='facultyInput'
-            type='text'
-            label='Факультет'
-            placeholder='Введите факультет'
-            value={faculty}
-            onChange={(e) => setFaculty(e.target.value)}
-            required
-          />
-          <Input
-            id='institutionInput'
-            type='text'
-            label='Институт'
-            placeholder='Введите институт'
-            value={institution}
-            onChange={(e) => setInstitution(e.target.value)}
-            required
-          />
-          <Button
-            type='primary'
-            htmlType='submit'
-            className={styles.nextButton}
-          >
-            Сохранить
-          </Button>
-        </form>
-      </div>
-    </div>
+    <Modal onClose={onClose}>
+      <form onSubmit={handleSubmit} className={styles.form}>
+        <Select
+          id='levelSelect'
+          label='Уровень образования'
+          value={level}
+          onChange={(e) => setLevel(e.target.value)}
+          options={educationOptions}
+          rightIcon={
+            <img
+              src='/icons/chevron-down.svg'
+              alt='Стрелка вниз'
+              // className={styles.arrow}
+            />
+          }
+        />
+        <Input
+          id='facultyInput'
+          type='text'
+          label='Факультет'
+          placeholder='Введите факультет'
+          value={faculty}
+          onChange={(e) => setFaculty(e.target.value)}
+          required
+        />
+        <Input
+          id='institutionInput'
+          type='text'
+          label='Институт'
+          placeholder='Введите институт'
+          value={institution}
+          onChange={(e) => setInstitution(e.target.value)}
+          required
+        />
+        <Button type='primary' htmlType='submit' className={styles.nextButton}>
+          Сохранить
+        </Button>
+      </form>
+    </Modal>
   );
 };
 

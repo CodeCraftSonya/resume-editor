@@ -7,6 +7,7 @@ import { FaPlus } from 'react-icons/fa6';
 import { MdDeleteOutline } from 'react-icons/md';
 import type { CerProps, Certificate } from './types';
 import { FaRegEdit } from 'react-icons/fa';
+import Modal from '../../modal/Modal.tsx';
 
 let idCounter = 0;
 
@@ -113,51 +114,46 @@ const CertificatesSection = ({ onDeleteSection, data, setData }: CerProps) => {
       </div>
 
       {isModalOpen && (
-        <div className={styles.modalBackdrop}>
-          <div className={styles.modal} ref={modalRef}>
-            <h3>Редактирование сертификата</h3>
-            <form onSubmit={handleSave} className={styles.form}>
-              <Input
-                id='courseInput'
-                type='text'
-                label='Название курса'
-                value={editingCert?.course || ''}
-                onChange={(e) =>
-                  setEditingCert(
-                    (prev) => prev && { ...prev, course: e.target.value }
-                  )
-                }
-                required
-              />
-              <Input
-                id='organizationInput'
-                type='text'
-                label='Организация'
-                value={editingCert?.organization || ''}
-                onChange={(e) =>
-                  setEditingCert(
-                    (prev) => prev && { ...prev, organization: e.target.value }
-                  )
-                }
-                required
-              />
-              <DatePicker
-                value={editingCert?.date || null}
-                onChange={(date) =>
-                  setEditingCert((prev) => prev && { ...prev, date })
-                }
-              />
-              <div className={styles.modalActions}>
-                <Button type='primary' htmlType='submit'>
-                  Сохранить
-                </Button>
-                <Button type='secondary' onClick={handleCloseModal}>
-                  ✖
-                </Button>
-              </div>
-            </form>
-          </div>
-        </div>
+        <Modal onClose={handleCloseModal}>
+          <h3>Редактирование сертификата</h3>
+          <form onSubmit={handleSave} className={styles.form}>
+            <Input
+              id='courseInput'
+              type='text'
+              label='Название курса'
+              value={editingCert?.course || ''}
+              onChange={(e) =>
+                setEditingCert(
+                  (prev) => prev && { ...prev, course: e.target.value }
+                )
+              }
+              required
+            />
+            <Input
+              id='organizationInput'
+              type='text'
+              label='Организация'
+              value={editingCert?.organization || ''}
+              onChange={(e) =>
+                setEditingCert(
+                  (prev) => prev && { ...prev, organization: e.target.value }
+                )
+              }
+              required
+            />
+            <DatePicker
+              value={editingCert?.date || null}
+              onChange={(date) =>
+                setEditingCert((prev) => prev && { ...prev, date })
+              }
+            />
+            <div className={styles.modalActions}>
+              <Button type='primary' htmlType='submit'>
+                Сохранить
+              </Button>
+            </div>
+          </form>
+        </Modal>
       )}
     </div>
   );
