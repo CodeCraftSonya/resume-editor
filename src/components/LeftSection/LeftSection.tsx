@@ -9,18 +9,20 @@ import { useState } from 'react';
 import { DragDropContext, Draggable, Droppable } from '@hello-pangea/dnd';
 import Input from '../Input/Input.tsx';
 import { IoDownloadOutline } from 'react-icons/io5';
+import type { EducationCardData } from '../sections/Education/types.ts';
+import type { Certificate } from '../sections/Certificates/types.ts';
 
 interface LeftSectionProps {
   sections: string[];
   setSections: React.Dispatch<React.SetStateAction<string[]>>;
   name: string;
   setName: (data: string) => void;
-  education: any[];
-  setEducation: (data: any[]) => void;
+  education: EducationCardData[];
+  setEducation: (data: EducationCardData[]) => void;
   skills: string[];
   setSkills: (data: string[]) => void;
-  certificates: any[];
-  setCertificates: (data: any[]) => void;
+  certificates: Certificate[];
+  setCertificates: (data: Certificate[]) => void;
   about: string;
   setAbout: (data: string) => void;
 }
@@ -66,6 +68,15 @@ const LeftSection = ({
   setAbout
 }: LeftSectionProps) => {
   const [selected, setSelected] = useState('');
+
+  const props = {
+    Education: [education, setEducation],
+    Skills: [skills, setSkills],
+    Sertificates: [certificates, setCertificates],
+    About: [about, setAbout]
+  };
+
+  type SectionKey = keyof typeof props;
 
   const handleAdd = () => {
     if (selected && !sections.includes(selected)) {
@@ -130,14 +141,7 @@ const LeftSection = ({
               ref={provided.innerRef}
               {...provided.droppableProps}
             >
-              {sections.map((key, index) => {
-                const props = {
-                  Education: [education, setEducation],
-                  Skills: [skills, setSkills],
-                  Sertificates: [certificates, setCertificates],
-                  About: [about, setAbout]
-                };
-
+              {sections.map((key: SectionKey, index) => {
                 return (
                   <Draggable key={key} draggableId={key} index={index}>
                     {(provided) => (

@@ -19,5 +19,5 @@ export interface EducationCardProps {
 export interface EducationProps {
   onDeleteSection: () => void;
   data: EducationCardData[];
-  setData: (data: EducationCardData[]) => void;
+  setData: React.Dispatch<React.SetStateAction<EducationCardData[]>>;
 }

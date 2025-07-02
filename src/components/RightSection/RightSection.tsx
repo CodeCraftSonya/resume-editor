@@ -1,4 +1,5 @@
 import styles from './RightSection.module.css';
+import type { RightSectionProps } from './types';
 
 const RightSection = ({
   education,
@@ -7,7 +8,7 @@ const RightSection = ({
   about,
   name,
   activeSections
-}) => {
+}: RightSectionProps) => {
   return (
     <div className={styles.previewWrapper}>
       <div className={styles.page}>

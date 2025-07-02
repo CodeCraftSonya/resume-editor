@@ -31,7 +31,8 @@ const EducationSection = ({
   };
 
   const handleDelete = (index: number) => {
-    setData((prev) => prev.filter((_, i) => i !== index));
+    const filtered = data.filter((_, i) => i !== index);
+    setData(filtered);
   };
 
   const handleSave = (data: any) => {

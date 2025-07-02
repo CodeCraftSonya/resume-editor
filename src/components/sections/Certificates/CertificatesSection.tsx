@@ -30,18 +30,20 @@ const CertificatesSection = ({ onDeleteSection, data, setData }: CerProps) => {
   const handleSave = () => {
     if (!editingCert) return;
 
-    const certWithDate = {
+    const certWithDate: Certificate = {
       ...editingCert,
-      date: editingCert.date || null // или можно установить значение по умолчанию
+      date: editingCert.date || null
     };
 
-    setData((prev) => {
-      const exists = prev.find((c) => c.id === editingCert.id);
+    const updated = (() => {
+      const exists = data.find((c) => c.id === editingCert.id);
       if (exists) {
-        return prev.map((c) => (c.id === editingCert.id ? certWithDate : c));
+        return data.map((c) => (c.id === editingCert.id ? certWithDate : c));
       }
-      return [...prev, certWithDate];
-    });
+      return [...data, certWithDate];
+    })();
+
+    setData(updated);
 
     handleCloseModal();
   };

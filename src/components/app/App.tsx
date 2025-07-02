@@ -2,13 +2,14 @@ import LeftSection from '../LeftSection/LeftSection.tsx';
 import styles from './App.module.css';
 import { useState } from 'react';
 import RightSection from '../RightSection/RightSection.tsx';
+import type { Certificate } from '../sections/Certificates/types.ts';
 
 const App = () => {
   const [sections, setSections] = useState<string[]>([]);
   const [name, setName] = useState('');
-  const [education, setEducation] = useState([]);
-  const [skills, setSkills] = useState([]);
-  const [certificates, setCertificates] = useState([]);
+  const [education, setEducation] = useState<any[]>([]);
+  const [skills, setSkills] = useState<string[]>([]);
+  const [certificates, setCertificates] = useState<Certificate[]>([]);
   const [about, setAbout] = useState('');
 
   return (
