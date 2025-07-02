@@ -3,16 +3,21 @@ import Select from '../Selects/Select/Select.tsx';
 import Button from '../Buttons/button.tsx';
 import EducationSection from '../sections/Education/EducationSection.tsx';
 import SkillsSection from '../sections/Skills/SkillsSection.tsx';
-import SertificatesSection from '../sections/Certificates/CertificatesSection.tsx';
 import AboutSection from '../sections/About/AboutSection.tsx';
-import type { JSX } from 'react';
+import CertificatesSection from '../sections/Certificates/CertificatesSection.tsx';
 import { useState } from 'react';
 
-const sectionMap: Record<string, JSX.Element> = {
-  Education: <EducationSection />,
-  Skills: <SkillsSection />,
-  Sertificates: <SertificatesSection />,
-  About: <AboutSection />
+const sectionMap: Record<string, (onDelete: () => void) => JSX.Element> = {
+  Education: (onDelete: () => void) => (
+    <EducationSection onDeleteSection={onDelete} />
+  ),
+  Skills: (onDelete: () => void) => (
+    <SkillsSection onDeleteSection={onDelete} />
+  ),
+  Sertificates: (onDelete: () => void) => (
+    <CertificatesSection onDeleteSection={onDelete} />
+  ),
+  About: (onDelete: () => void) => <AboutSection onDeleteSection={onDelete} />
 };
 
 const LeftSection = () => {
@@ -36,7 +41,7 @@ const LeftSection = () => {
           { label: 'Образование', value: 'Education' },
           { label: 'Навыки', value: 'Skills' },
           { label: 'Сертификаты', value: 'Sertificates' },
-          { label: 'О себе', value: 'About' }
+          { label: 'Обо мне', value: 'About' }
         ]}
         rightIcon={
           <img
@@ -57,7 +62,11 @@ const LeftSection = () => {
 
       <div className={styles.sectionsList}>
         {sections.map((key) => (
-          <div key={key}>{sectionMap[key]}</div>
+          <div key={key}>
+            {sectionMap[key](() => {
+              setSections((prev) => prev.filter((item) => item !== key));
+            })}
+          </div>
         ))}
       </div>
     </div>

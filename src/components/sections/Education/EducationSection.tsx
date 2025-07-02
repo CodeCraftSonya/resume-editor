@@ -2,11 +2,15 @@ import { useRef, useState } from 'react';
 import styles from './Education.module.css';
 import EducationCard from './EducationCard';
 import EducationForm from './EducationForm';
+import Button from '../../Buttons/button.tsx';
+import { FaPlus } from 'react-icons/fa6';
+import { MdDeleteOutline } from 'react-icons/md';
+import type { EducationCardData, EducationProps } from './types';
 
 const MAX_CARDS = 3;
 
-const EducationSection = () => {
-  const [cards, setCards] = useState([]);
+const EducationSection = ({ onDeleteSection }: EducationProps) => {
+  const [cards, setCards] = useState<EducationCardData[]>([]);
   const [editingIndex, setEditingIndex] = useState<number | null>(null);
   const [formVisible, setFormVisible] = useState(false);
   const sectionRef = useRef(null);
@@ -42,11 +46,26 @@ const EducationSection = () => {
     <div className={styles.section} ref={sectionRef}>
       <div className={styles.header}>
         <h2>Образование</h2>
-        {cards.length < MAX_CARDS && (
-          <button className={styles.addButton} onClick={handleAdd}>
-            +
-          </button>
-        )}
+        <div className={styles.sectionButtons}>
+          {cards.length < MAX_CARDS && (
+            <Button
+              type='primary'
+              htmlType='button'
+              className={styles.sectionButton}
+              onClick={handleAdd}
+            >
+              <FaPlus className={styles.icon} />
+            </Button>
+          )}
+          <Button
+            type='primary'
+            htmlType='button'
+            className={styles.sectionButton}
+            onClick={onDeleteSection}
+          >
+            <MdDeleteOutline className={styles.icon} />
+          </Button>
+        </div>
       </div>
 
       <div className={styles.cards}>
@@ -64,7 +83,7 @@ const EducationSection = () => {
         <EducationForm
           onClose={() => setFormVisible(false)}
           onSave={handleSave}
-          initialData={editingIndex !== null ? cards[editingIndex] : null}
+          initialData={editingIndex !== null ? cards[editingIndex] : undefined}
         />
       )}
     </div>

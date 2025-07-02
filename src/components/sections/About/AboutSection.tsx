@@ -1,7 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
 import styles from './AboutSection.module.css';
+import Button from '../../Buttons/button.tsx';
+import { FaPlus } from 'react-icons/fa6';
+import { FaRegEdit } from 'react-icons/fa';
+import { MdDeleteOutline } from 'react-icons/md';
+import type { AboutProps } from './types';
 
-const AboutSection = () => {
+const AboutSection = ({ onDeleteSection }: AboutProps) => {
   const [aboutText, setAboutText] = useState('');
   const [tempText, setTempText] = useState('');
   const [isEditing, setIsEditing] = useState(false);
@@ -9,12 +14,6 @@ const AboutSection = () => {
 
   const handleSave = () => {
     setAboutText(tempText);
-    setIsEditing(false);
-  };
-
-  const handleDelete = () => {
-    setAboutText('');
-    setTempText('');
     setIsEditing(false);
   };
 
@@ -45,10 +44,35 @@ const AboutSection = () => {
     <div className={styles.section}>
       <div className={styles.header}>
         <h2>Обо мне</h2>
-        <div className={styles.actions}>
-          {!aboutText && <button onClick={handleOpen}>➕</button>}
-          <button onClick={handleOpen}>✏️</button>
-          <button onClick={handleDelete}>🗑️</button>
+        <div className={styles.sectionButtons}>
+          {!aboutText && (
+            <Button
+              type='primary'
+              htmlType='button'
+              className={styles.sectionButton}
+              onClick={handleOpen}
+            >
+              <FaPlus className={styles.icon} />
+            </Button>
+          )}
+          {aboutText && (
+            <Button
+              type='primary'
+              htmlType='button'
+              className={styles.sectionButton}
+              onClick={handleOpen}
+            >
+              <FaRegEdit className={styles.icon} />
+            </Button>
+          )}
+          <Button
+            type='primary'
+            htmlType='button'
+            className={styles.sectionButton}
+            onClick={onDeleteSection}
+          >
+            <MdDeleteOutline className={styles.icon} />
+          </Button>
         </div>
       </div>
 
@@ -65,16 +89,21 @@ const AboutSection = () => {
               className={styles.closeBtn}
               onClick={() => setIsEditing(false)}
             >
-              ✖️
+              ×
             </button>
             <textarea
               placeholder='Напишите что-нибудь о себе...'
               value={tempText}
               onChange={(e) => setTempText(e.target.value)}
             />
-            <button className={styles.saveBtn} onClick={handleSave}>
+            <Button
+              type='primary'
+              htmlType='submit'
+              className={styles.nextButton}
+              onClick={handleSave}
+            >
               Сохранить
-            </button>
+            </Button>
           </div>
         </div>
       )}

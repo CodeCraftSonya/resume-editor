@@ -75,7 +75,7 @@ const DatePicker = () => {
     <div className={styles.datePicker} ref={ref}>
       <Input
         type='text'
-        label='Дата рождения'
+        label='Дата получения'
         readOnly
         value={date ? date.toLocaleDateString('ru-RU') : ''}
         placeholder='дд.мм.гггг'

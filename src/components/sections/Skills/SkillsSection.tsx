@@ -1,11 +1,16 @@
 import { useEffect, useRef, useState } from 'react';
 import styles from './SkillsSection.module.css';
+import Button from '../../Buttons/button.tsx';
+import { FaPlus } from 'react-icons/fa6';
+import { MdDeleteOutline } from 'react-icons/md';
+import { FaRegEdit } from 'react-icons/fa';
+import type { SkillsProps } from './types';
+import Input from '../../Input/Input.tsx';
 
-const SkillsSection = () => {
+const SkillsSection = ({ onDeleteSection }: SkillsProps) => {
   const [skills, setSkills] = useState<string[]>([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [newSkill, setNewSkill] = useState('');
-  const [isSectionVisible, setIsSectionVisible] = useState(true);
   const modalRef = useRef<HTMLDivElement>(null);
 
   const handleAddSkill = () => {
@@ -17,10 +22,6 @@ const SkillsSection = () => {
 
   const handleRemoveSkill = (skillToRemove: string) => {
     setSkills(skills.filter((skill) => skill !== skillToRemove));
-  };
-
-  const handleDeleteSection = () => {
-    setIsSectionVisible(false);
   };
 
   const handleClickOutside = (e: MouseEvent) => {
@@ -40,24 +41,39 @@ const SkillsSection = () => {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, [isModalOpen]);
 
-  if (!isSectionVisible) return null;
-
   return (
-    <div className={styles.skillsSection}>
-      <div className={styles.skillsHeader}>
+    <div className={styles.section}>
+      <div className={styles.header}>
         <h2>Навыки</h2>
-        <div className={styles.skillsActions}>
-          <button className={styles.iconButton} onClick={handleDeleteSection}>
-            🗑
-          </button>
-          {skills.length > 0 && (
-            <button
-              className={styles.iconButton}
+        <div className={styles.sectionButtons}>
+          {skills.length === 0 && (
+            <Button
+              type='primary'
+              htmlType='button'
+              className={styles.sectionButton}
               onClick={() => setIsModalOpen(true)}
             >
-              ✏️
-            </button>
+              <FaPlus className={styles.icon} />
+            </Button>
           )}
+          {skills.length > 0 && (
+            <Button
+              type='primary'
+              htmlType='button'
+              className={styles.sectionButton}
+              onClick={() => setIsModalOpen(true)}
+            >
+              <FaRegEdit className={styles.icon} />
+            </Button>
+          )}
+          <Button
+            type='primary'
+            htmlType='button'
+            className={styles.sectionButton}
+            onClick={onDeleteSection}
+          >
+            <MdDeleteOutline className={styles.icon} />
+          </Button>
         </div>
       </div>
 
@@ -69,15 +85,6 @@ const SkillsSection = () => {
         ))}
       </div>
 
-      {skills.length === 0 && (
-        <button
-          className={styles.addSkillButton}
-          onClick={() => setIsModalOpen(true)}
-        >
-          +
-        </button>
-      )}
-
       {isModalOpen && (
         <div className={styles.modalBackdrop}>
           <div className={styles.modal} ref={modalRef}>
@@ -85,14 +92,16 @@ const SkillsSection = () => {
               <h3>Редактировать навыки</h3>
               <button onClick={() => setIsModalOpen(false)}>×</button>
             </div>
-            <input
+            <Input
               type='text'
               value={newSkill}
               onChange={(e) => setNewSkill(e.target.value)}
               placeholder='Введите навык'
               maxLength={20}
             />
-            <button onClick={handleAddSkill}>Добавить навык</button>
+            <Button type='primary' htmlType='submit' onClick={handleAddSkill}>
+              Добавить навык
+            </Button>
             <div className={styles.skillsEditList}>
               {skills.map((skill) => (
                 <div className={styles.skillPill} key={skill}>

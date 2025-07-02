@@ -1,12 +1,12 @@
-.certificatesSection {
-  background: #f8f8f8;
+.section {
+  background: #fff;
   border-radius: 16px;
   padding: 20px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  margin-bottom: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  position: relative;
 }
 
-.sectionHeader {
+.header {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -34,31 +34,24 @@
   flex-direction: column;
   gap: 4px;
   max-width: 80%;
+  font-family: var(--font-main);
 }
 
 .certInfo strong {
   font-size: 16px;
 }
 
-.certInfo span,
-.certInfo em {
-  font-size: 14px;
-  color: #555;
-}
-
 .certActions {
-  display: flex;
-  gap: 8px;
+  flex-shrink: 0;
+  margin-left: 12px;
 }
 
-.addButton {
-  margin-top: 16px;
-  background: #2684ff;
-  color: white;
-  padding: 8px 16px;
-  border-radius: 8px;
-  border: none;
+.certActions button {
+  margin-left: 8px;
   cursor: pointer;
+  border: none;
+  background: transparent;
+  font-size: 18px;
 }
 
 .modalBackdrop {
@@ -88,4 +81,19 @@
   display: flex;
   justify-content: flex-end;
   gap: 10px;
+}
+
+.icon {
+  display: block;
+  width: 20px;
+  height: 20px;
+}
+
+.sectionButtons {
+  display: flex;
+  gap: 8px;
+}
+
+.sectionButton {
+  padding: 0.75rem;
 }

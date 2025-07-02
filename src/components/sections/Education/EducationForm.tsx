@@ -3,14 +3,20 @@ import styles from './Education.module.css';
 import Select from '../../Selects/Select/Select.tsx';
 import Input from '../../Input/Input.tsx';
 import Button from '../../Buttons/button.tsx';
+import { educationOptions } from '../../../constants/educationOptions.ts';
+import type { EducationFormProps } from './types.ts';
 
-const EducationForm = ({ onClose, onSave, initialData }) => {
+const EducationForm = ({
+  onClose,
+  onSave,
+  initialData
+}: EducationFormProps) => {
   const [level, setLevel] = useState(initialData?.level || '');
   const [faculty, setFaculty] = useState(initialData?.faculty || '');
   const [institution, setInstitution] = useState(
     initialData?.institution || ''
   );
-  const formRef = useRef(null);
+  const formRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
@@ -22,7 +28,7 @@ const EducationForm = ({ onClose, onSave, initialData }) => {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, [onClose]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     onSave({ level, faculty, institution });
   };
@@ -39,15 +45,7 @@ const EducationForm = ({ onClose, onSave, initialData }) => {
             label='Уровень образования'
             value={level}
             onChange={(e) => setLevel(e.target.value)}
-            options={[
-              { label: 'Не выбрано', value: '' },
-              { label: 'Среднее', value: 'Middle' },
-              { label: 'Среднее специальное', value: 'Middle-special' },
-              { label: 'Высшее', value: 'High' },
-              { label: 'Бакалавр', value: 'Bachelor' },
-              { label: 'Магистр', value: 'Master' },
-              { label: 'Кандидат наук', value: 'Scientist' }
-            ]}
+            options={educationOptions}
             rightIcon={
               <img
                 src='/icons/chevron-down.svg'

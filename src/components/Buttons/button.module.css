@@ -1,6 +1,12 @@
 .primary,
 .secondary,
 .tertiary {
+  font-family: var(--font-main);
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 133%;
+  letter-spacing: 0.02em;
+  border: none;
   border-radius: 0.75rem;
   padding: 0.75rem 2.125rem;
   cursor: pointer;

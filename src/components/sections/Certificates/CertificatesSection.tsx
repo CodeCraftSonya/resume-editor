@@ -3,21 +3,17 @@ import styles from './CertificatesSection.module.css';
 import Input from '../../Input/Input.tsx';
 import DatePicker from '../../DatePicker/DatePicker.tsx';
 import Button from '../../Buttons/button.tsx';
-
-interface Certificate {
-  id: number;
-  course: string;
-  organization: string;
-  period: string;
-}
+import { FaPlus } from 'react-icons/fa6';
+import { MdDeleteOutline } from 'react-icons/md';
+import type { CerProps, Certificate } from './types';
+import { FaRegEdit } from 'react-icons/fa';
 
 let idCounter = 0;
 
-const CertificatesSection = () => {
+const CertificatesSection = ({ onDeleteSection }: CerProps) => {
   const [certificates, setCertificates] = useState<Certificate[]>([]);
   const [editingCert, setEditingCert] = useState<Certificate | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isVisible, setIsVisible] = useState(true);
 
   const modalRef = useRef<HTMLDivElement>(null);
 
@@ -66,13 +62,30 @@ const CertificatesSection = () => {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, [isModalOpen]);
 
-  if (!isVisible) return null;
-
   return (
-    <div className={styles.certificatesSection}>
-      <div className={styles.sectionHeader}>
+    <div className={styles.section}>
+      <div className={styles.header}>
         <h2>Сертификаты</h2>
-        <button onClick={() => setIsVisible(false)}>🗑</button>
+        <div className={styles.sectionButtons}>
+          {certificates.length < 3 && (
+            <Button
+              type='primary'
+              htmlType='button'
+              className={styles.sectionButton}
+              onClick={() => handleOpenModal()}
+            >
+              <FaPlus className={styles.icon} />
+            </Button>
+          )}
+          <Button
+            type='primary'
+            htmlType='button'
+            className={styles.sectionButton}
+            onClick={onDeleteSection}
+          >
+            <MdDeleteOutline className={styles.icon} />
+          </Button>
+        </div>
       </div>
 
       <div className={styles.certCards}>
@@ -84,16 +97,16 @@ const CertificatesSection = () => {
               <em>{cert.period}</em>
             </div>
             <div className={styles.certActions}>
-              <button onClick={() => handleOpenModal(cert)}>✏️</button>
-              <button onClick={() => handleDelete(cert.id)}>🗑</button>
+              <button onClick={() => handleOpenModal(cert)}>
+                <FaRegEdit className={styles.icon} />
+              </button>
+              <button onClick={() => handleDelete(cert.id)}>
+                <MdDeleteOutline className={styles.icon} />
+              </button>
             </div>
           </div>
         ))}
       </div>
-
-      <button className={styles.addButton} onClick={() => handleOpenModal()}>
-        ＋ Добавить сертификат
-      </button>
 
       {isModalOpen && (
         <div className={styles.modalBackdrop}>
