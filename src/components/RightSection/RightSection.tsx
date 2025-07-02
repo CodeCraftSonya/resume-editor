@@ -5,11 +5,13 @@ const RightSection = ({
   skills,
   certificates,
   about,
+  name,
   activeSections
 }) => {
   return (
     <div className={styles.previewWrapper}>
       <div className={styles.page}>
+        <h3 className={styles.name}>{name}</h3>
         {activeSections.includes('About') && about && (
           <section className={styles.section}>
             <h3>О себе</h3>
@@ -46,14 +48,16 @@ const RightSection = ({
         {activeSections.includes('Sertificates') && (
           <section className={styles.section}>
             <h3>Сертификаты</h3>
-            {certificates.map((cert, idx) => (
-              <div key={idx} className={styles.item}>
-                <strong>{cert.course}</strong> — {cert.organization}
-                <div>
-                  <em>{cert.period}</em>
+            <div className={styles.certWrapper}>
+              {certificates.map((cert, idx) => (
+                <div key={idx} className={styles.item}>
+                  <strong>{cert.course}</strong> — {cert.organization}
+                  {cert.date && (
+                    <div>{cert.date.toLocaleDateString('ru-RU')}</div>
+                  )}
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </section>
         )}
       </div>

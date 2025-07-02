@@ -7,10 +7,14 @@ import AboutSection from '../sections/About/AboutSection.tsx';
 import CertificatesSection from '../sections/Certificates/CertificatesSection.tsx';
 import { useState } from 'react';
 import { DragDropContext, Draggable, Droppable } from '@hello-pangea/dnd';
+import Input from '../Input/Input.tsx';
+import { IoDownloadOutline } from 'react-icons/io5';
 
 interface LeftSectionProps {
   sections: string[];
   setSections: React.Dispatch<React.SetStateAction<string[]>>;
+  name: string;
+  setName: (data: string) => void;
   education: any[];
   setEducation: (data: any[]) => void;
   skills: string[];
@@ -50,6 +54,8 @@ const sectionMap: Record<
 const LeftSection = ({
   sections,
   setSections,
+  name,
+  setName,
   education,
   setEducation,
   skills,
@@ -79,6 +85,14 @@ const LeftSection = ({
 
   return (
     <div className={styles.section}>
+      <Input
+        type='text'
+        label='Имя'
+        placeholder='Введите ваше имя'
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+        required
+      />
       <Select
         id='sectionSelect'
         label='Добавить секцию'
@@ -150,6 +164,10 @@ const LeftSection = ({
           )}
         </Droppable>
       </DragDropContext>
+      <Button type='primary' htmlType='button' className={styles.nextButton}>
+        Скачать pdf
+        <IoDownloadOutline className={styles.icon} />
+      </Button>
     </div>
   );
 };
