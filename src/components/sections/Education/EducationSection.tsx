@@ -5,18 +5,21 @@ import EducationForm from './EducationForm';
 import Button from '../../Buttons/button.tsx';
 import { FaPlus } from 'react-icons/fa6';
 import { MdDeleteOutline } from 'react-icons/md';
-import type { EducationCardData, EducationProps } from './types';
+import type { EducationProps } from './types';
 
 const MAX_CARDS = 3;
 
-const EducationSection = ({ onDeleteSection }: EducationProps) => {
-  const [cards, setCards] = useState<EducationCardData[]>([]);
+const EducationSection = ({
+  onDeleteSection,
+  data,
+  setData
+}: EducationProps) => {
   const [editingIndex, setEditingIndex] = useState<number | null>(null);
   const [formVisible, setFormVisible] = useState(false);
   const sectionRef = useRef(null);
 
   const handleAdd = () => {
-    if (cards.length < MAX_CARDS) {
+    if (data.length < MAX_CARDS) {
       setEditingIndex(null);
       setFormVisible(true);
     }
@@ -28,14 +31,14 @@ const EducationSection = ({ onDeleteSection }: EducationProps) => {
   };
 
   const handleDelete = (index: number) => {
-    setCards((prev) => prev.filter((_, i) => i !== index));
+    setData((prev) => prev.filter((_, i) => i !== index));
   };
 
   const handleSave = (data: any) => {
     if (editingIndex === null) {
-      setCards((prev) => [...prev, data]);
+      setData((prev) => [...prev, data]);
     } else {
-      setCards((prev) =>
+      setData((prev) =>
         prev.map((item, i) => (i === editingIndex ? data : item))
       );
     }
@@ -47,7 +50,7 @@ const EducationSection = ({ onDeleteSection }: EducationProps) => {
       <div className={styles.header}>
         <h2>Образование</h2>
         <div className={styles.sectionButtons}>
-          {cards.length < MAX_CARDS && (
+          {data.length < MAX_CARDS && (
             <Button
               type='primary'
               htmlType='button'
@@ -69,7 +72,7 @@ const EducationSection = ({ onDeleteSection }: EducationProps) => {
       </div>
 
       <div className={styles.cards}>
-        {cards.map((card, index) => (
+        {data.map((card, index) => (
           <EducationCard
             key={index}
             data={card}
@@ -83,7 +86,7 @@ const EducationSection = ({ onDeleteSection }: EducationProps) => {
         <EducationForm
           onClose={() => setFormVisible(false)}
           onSave={handleSave}
-          initialData={editingIndex !== null ? cards[editingIndex] : undefined}
+          initialData={editingIndex !== null ? data[editingIndex] : undefined}
         />
       )}
     </div>

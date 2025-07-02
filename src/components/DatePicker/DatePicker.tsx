@@ -8,18 +8,25 @@ import Button from '../Buttons/button.tsx';
 type ValuePiece = Date | null;
 type Value = ValuePiece | [ValuePiece, ValuePiece];
 
-const DatePicker = () => {
-  const initialDate = new Date(2000, 3, 1);
-  const [date, setDate] = useState<Date | null>(initialDate);
+interface DatePickerProps {
+  value?: Date | null;
+  onChange?: (date: Date | null) => void;
+}
+
+const DatePicker: React.FC<DatePickerProps> = ({ value, onChange }) => {
+  const initialDate = new Date(2025, 3, 1);
+  const [date, setDate] = useState<Date | null>(value || initialDate);
   const [showCalendar, setShowCalendar] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
-  const [activeStartDate, setActiveStartDate] = useState<Date>(initialDate);
+  const [activeStartDate, setActiveStartDate] = useState<Date>(
+    value || initialDate
+  );
 
   const handleDateChange = (value: Value) => {
-    if (value instanceof Date) {
-      setDate(value);
-      setActiveStartDate(value);
-    }
+    const newDate = value instanceof Date ? value : null;
+    setDate(newDate);
+    setActiveStartDate(newDate || activeStartDate);
+    onChange?.(newDate);
   };
 
   const [showMonthDropdown, setShowMonthDropdown] = useState(false);

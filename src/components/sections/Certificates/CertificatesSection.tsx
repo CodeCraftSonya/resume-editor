@@ -10,17 +10,14 @@ import { FaRegEdit } from 'react-icons/fa';
 
 let idCounter = 0;
 
-const CertificatesSection = ({ onDeleteSection }: CerProps) => {
-  const [certificates, setCertificates] = useState<Certificate[]>([]);
+const CertificatesSection = ({ onDeleteSection, data, setData }: CerProps) => {
   const [editingCert, setEditingCert] = useState<Certificate | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const modalRef = useRef<HTMLDivElement>(null);
 
   const handleOpenModal = (cert?: Certificate) => {
-    setEditingCert(
-      cert || { id: idCounter++, course: '', organization: '', period: '' }
-    );
+    setEditingCert(cert || { id: idCounter++, course: '', organization: '' });
     setIsModalOpen(true);
   };
 
@@ -32,19 +29,24 @@ const CertificatesSection = ({ onDeleteSection }: CerProps) => {
   const handleSave = () => {
     if (!editingCert) return;
 
-    setCertificates((prev) => {
+    const certWithDate = {
+      ...editingCert,
+      date: editingCert.date || null // или можно установить значение по умолчанию
+    };
+
+    setData((prev) => {
       const exists = prev.find((c) => c.id === editingCert.id);
       if (exists) {
-        return prev.map((c) => (c.id === editingCert.id ? editingCert : c));
+        return prev.map((c) => (c.id === editingCert.id ? certWithDate : c));
       }
-      return [...prev, editingCert];
+      return [...prev, certWithDate];
     });
 
     handleCloseModal();
   };
 
   const handleDelete = (id: number) => {
-    setCertificates(certificates.filter((c) => c.id !== id));
+    setData(data.filter((c) => c.id !== id));
   };
 
   const handleClickOutside = (e: MouseEvent) => {
@@ -67,7 +69,7 @@ const CertificatesSection = ({ onDeleteSection }: CerProps) => {
       <div className={styles.header}>
         <h2>Сертификаты</h2>
         <div className={styles.sectionButtons}>
-          {certificates.length < 3 && (
+          {data.length < 3 && (
             <Button
               type='primary'
               htmlType='button'
@@ -89,12 +91,14 @@ const CertificatesSection = ({ onDeleteSection }: CerProps) => {
       </div>
 
       <div className={styles.certCards}>
-        {certificates.map((cert) => (
+        {data.map((cert) => (
           <div key={cert.id} className={styles.certCard}>
             <div className={styles.certInfo}>
               <strong>{cert.course}</strong>
               <span>{cert.organization}</span>
-              <em>{cert.period}</em>
+              {cert.date && (
+                <span>{cert.date.toLocaleDateString('ru-RU')}</span>
+              )}
             </div>
             <div className={styles.certActions}>
               <button onClick={() => handleOpenModal(cert)}>
@@ -137,7 +141,12 @@ const CertificatesSection = ({ onDeleteSection }: CerProps) => {
                 }
                 required
               />
-              <DatePicker />
+              <DatePicker
+                value={editingCert?.date || null}
+                onChange={(date) =>
+                  setEditingCert((prev) => prev && { ...prev, date })
+                }
+              />
               <div className={styles.modalActions}>
                 <Button type='primary' htmlType='submit'>
                   Сохранить

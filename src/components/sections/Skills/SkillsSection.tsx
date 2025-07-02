@@ -7,21 +7,20 @@ import { FaRegEdit } from 'react-icons/fa';
 import type { SkillsProps } from './types';
 import Input from '../../Input/Input.tsx';
 
-const SkillsSection = ({ onDeleteSection }: SkillsProps) => {
-  const [skills, setSkills] = useState<string[]>([]);
+const SkillsSection = ({ onDeleteSection, data, setData }: SkillsProps) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [newSkill, setNewSkill] = useState('');
   const modalRef = useRef<HTMLDivElement>(null);
 
   const handleAddSkill = () => {
-    if (newSkill.trim() && !skills.includes(newSkill)) {
-      setSkills([...skills, newSkill.trim()]);
+    if (newSkill.trim() && !data.includes(newSkill)) {
+      setData([...data, newSkill.trim()]);
       setNewSkill('');
     }
   };
 
   const handleRemoveSkill = (skillToRemove: string) => {
-    setSkills(skills.filter((skill) => skill !== skillToRemove));
+    setData(data.filter((skill) => skill !== skillToRemove));
   };
 
   const handleClickOutside = (e: MouseEvent) => {
@@ -46,7 +45,7 @@ const SkillsSection = ({ onDeleteSection }: SkillsProps) => {
       <div className={styles.header}>
         <h2>Навыки</h2>
         <div className={styles.sectionButtons}>
-          {skills.length === 0 && (
+          {data.length === 0 && (
             <Button
               type='primary'
               htmlType='button'
@@ -56,7 +55,7 @@ const SkillsSection = ({ onDeleteSection }: SkillsProps) => {
               <FaPlus className={styles.icon} />
             </Button>
           )}
-          {skills.length > 0 && (
+          {data.length > 0 && (
             <Button
               type='primary'
               htmlType='button'
@@ -78,7 +77,7 @@ const SkillsSection = ({ onDeleteSection }: SkillsProps) => {
       </div>
 
       <div className={styles.skillsList}>
-        {skills.map((skill) => (
+        {data.map((skill) => (
           <div className={styles.skillPill} key={skill}>
             {skill}
           </div>
@@ -103,7 +102,7 @@ const SkillsSection = ({ onDeleteSection }: SkillsProps) => {
               Добавить навык
             </Button>
             <div className={styles.skillsEditList}>
-              {skills.map((skill) => (
+              {data.map((skill) => (
                 <div className={styles.skillPill} key={skill}>
                   {skill}
                   <button

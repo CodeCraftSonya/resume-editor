@@ -6,19 +6,18 @@ import { FaRegEdit } from 'react-icons/fa';
 import { MdDeleteOutline } from 'react-icons/md';
 import type { AboutProps } from './types';
 
-const AboutSection = ({ onDeleteSection }: AboutProps) => {
-  const [aboutText, setAboutText] = useState('');
+const AboutSection = ({ onDeleteSection, data, setData }: AboutProps) => {
   const [tempText, setTempText] = useState('');
   const [isEditing, setIsEditing] = useState(false);
   const formRef = useRef<HTMLDivElement>(null);
 
   const handleSave = () => {
-    setAboutText(tempText);
+    setData(tempText);
     setIsEditing(false);
   };
 
   const handleOpen = () => {
-    setTempText(aboutText);
+    setTempText(data);
     setIsEditing(true);
   };
 
@@ -45,7 +44,7 @@ const AboutSection = ({ onDeleteSection }: AboutProps) => {
       <div className={styles.header}>
         <h2>Обо мне</h2>
         <div className={styles.sectionButtons}>
-          {!aboutText && (
+          {!data && (
             <Button
               type='primary'
               htmlType='button'
@@ -55,7 +54,7 @@ const AboutSection = ({ onDeleteSection }: AboutProps) => {
               <FaPlus className={styles.icon} />
             </Button>
           )}
-          {aboutText && (
+          {data && (
             <Button
               type='primary'
               htmlType='button'
@@ -76,9 +75,9 @@ const AboutSection = ({ onDeleteSection }: AboutProps) => {
         </div>
       </div>
 
-      {!isEditing && aboutText && (
-        <div className={styles.text} title={aboutText}>
-          {aboutText}
+      {!isEditing && data && (
+        <div className={styles.text} title={data}>
+          {data}
         </div>
       )}
 
