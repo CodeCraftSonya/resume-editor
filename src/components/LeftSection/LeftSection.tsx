@@ -47,6 +47,24 @@ const LeftSection = ({
     setSections(reordered);
   };
 
+  const handleDeleteSection = (key: Section) => {
+    setSections((prev) => prev.filter((item) => item !== key));
+    switch (key) {
+      case 'Education':
+        setEducation([]);
+        break;
+      case 'Skills':
+        setSkills([]);
+        break;
+      case 'Certificates':
+        setCertificates([]);
+        break;
+      case 'About':
+        setAbout('');
+        break;
+    }
+  };
+
   return (
     <div className={styles.section}>
       <Input
@@ -98,10 +116,7 @@ const LeftSection = ({
                         {...provided.dragHandleProps}
                       >
                         {sectionMap[key](
-                          () =>
-                            setSections((prev) =>
-                              prev.filter((item) => item !== key)
-                            ),
+                          () => handleDeleteSection(key),
                           props[key][0],
                           props[key][1]
                         )}
