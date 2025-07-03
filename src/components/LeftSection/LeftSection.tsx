@@ -87,7 +87,7 @@ const LeftSection = ({
           { label: 'Сертификаты', value: 'Certificates' },
           { label: 'Обо мне', value: 'About' }
         ]}
-        rightIcon={<img src='/icons/chevron-down.svg' alt='Стрелка вниз' />}
+        rightIcon={<img src='icons/chevron-down.svg' alt='Стрелка вниз' />}
       />
       <Button
         onClick={handleAdd}

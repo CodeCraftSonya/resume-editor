@@ -88,7 +88,7 @@ const DatePicker: React.FC<DatePickerProps> = ({ value, onChange }) => {
         placeholder='дд.мм.гггг'
         onClick={() => setShowCalendar(!showCalendar)}
         className={styles.dateInput}
-        rightIcon={<img src='/icons/calendar.svg' alt='calendar' />}
+        rightIcon={<img src='icons/calendar.svg' alt='calendar' />}
         required
       />
 
@@ -121,7 +121,7 @@ const DatePicker: React.FC<DatePickerProps> = ({ value, onChange }) => {
                 >
                   {months[date.getMonth()]}
                   <img
-                    src='/icons/chevron-down.svg'
+                    src='icons/chevron-down.svg'
                     alt='Стрелка вниз'
                     className={styles.arrow}
                   />
@@ -146,7 +146,7 @@ const DatePicker: React.FC<DatePickerProps> = ({ value, onChange }) => {
                 >
                   {date.getFullYear()}
                   <img
-                    src='/icons/chevron-down.svg'
+                    src='icons/chevron-down.svg'
                     alt='Стрелка вниз'
                     className={styles.arrow}
                   />

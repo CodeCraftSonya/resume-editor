@@ -32,13 +32,7 @@ const EducationForm = ({
           value={level}
           onChange={(e) => setLevel(e.target.value)}
           options={educationOptions}
-          rightIcon={
-            <img
-              src='/icons/chevron-down.svg'
-              alt='Стрелка вниз'
-              // className={styles.arrow}
-            />
-          }
+          rightIcon={<img src='icons/chevron-down.svg' alt='Стрелка вниз' />}
         />
         <Input
           id='facultyInput'
