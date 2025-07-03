@@ -26,6 +26,7 @@
 }
 
 .skillPill {
+  font-family: var(--font-main);
   background-color: var(--button-hover-color);
   border-radius: 20px;
   padding: 6px 12px;

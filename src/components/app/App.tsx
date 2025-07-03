@@ -3,11 +3,12 @@ import styles from './App.module.css';
 import { useState } from 'react';
 import RightSection from '../RightSection/RightSection.tsx';
 import type { Certificate } from '../sections/Certificates/types.ts';
+import type { EducationCardData } from '../sections/Education/types.ts';
 
 const App = () => {
   const [sections, setSections] = useState<string[]>([]);
   const [name, setName] = useState('');
-  const [education, setEducation] = useState<any[]>([]);
+  const [education, setEducation] = useState<EducationCardData[]>([]);
   const [skills, setSkills] = useState<string[]>([]);
   const [certificates, setCertificates] = useState<Certificate[]>([]);
   const [about, setAbout] = useState('');

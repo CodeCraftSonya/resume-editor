@@ -37,10 +37,6 @@
 :root {
   --font-main: 'Roboto', sans-serif;
   --font-heading: 'Jost', sans-serif;
-  --font-card-name: 'Open Sans', sans-serif;
-  --font-more-pictures: 'Inter', sans-serif;
-  --caption-font-size: 12px;
-  --caption-font-line-height: 1.33;
   --text-color: #253017;
   --caption-color: #69735d;
   --disabled-text-color: #9ca197;
@@ -52,15 +48,6 @@
   --button-hover-color: #deebc5;
   --background-color: #f9faf7;
   --footer-color: #fff;
-  --alarm-color: #e0796e;
-  --error-color: #bf3920;
-  --tag-business-color: #eee7f7;
-  --tag-creativity-color: #f7e7f2;
-  --tag-languages-color: #ebe5c5;
-  --tag-education-color: #e7f2f6;
-  --tag-home-color: #f7ebe5;
-  --tag-health-color: #e9f7e7;
-  --tag-plus-color: #e8ecf7;
 }
 
 *,
@@ -103,6 +90,9 @@ h4 {
   letter-spacing: 0.02em;
 }
 
+p {
+  font-family: var(--font-main);
+}
 button {
   background-color: transparent;
   border: none;

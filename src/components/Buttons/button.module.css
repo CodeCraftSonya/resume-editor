@@ -58,9 +58,3 @@
   color: var(--disabled-text-color);
   cursor: not-allowed;
 }
-
-.tertiary {
-  background-color: var(--card-input-color);
-  border: 1px solid transparent;
-  color: var(--text-color);
-}

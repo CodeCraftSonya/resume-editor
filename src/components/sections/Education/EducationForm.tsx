@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useState } from 'react';
 import styles from './Education.module.css';
 import Select from '../../Selects/Select/Select.tsx';
 import Input from '../../Input/Input.tsx';
@@ -17,17 +17,6 @@ const EducationForm = ({
   const [institution, setInstitution] = useState(
     initialData?.institution || ''
   );
-  const formRef = useRef<HTMLDivElement | null>(null);
-
-  useEffect(() => {
-    const handleClickOutside = (e: MouseEvent) => {
-      if (formRef.current && !formRef.current.contains(e.target as Node)) {
-        onClose();
-      }
-    };
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, [onClose]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();

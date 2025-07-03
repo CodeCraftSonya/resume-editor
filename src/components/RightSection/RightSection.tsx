@@ -1,5 +1,6 @@
 import styles from './RightSection.module.css';
 import type { RightSectionProps } from './types';
+import { educationOptions } from '../../constants/educationOptions.ts';
 
 const RightSection = ({
   education,
@@ -30,8 +31,13 @@ const RightSection = ({
                   <section className={styles.section} key='Education'>
                     <h3>Образование</h3>
                     {education.map((edu, idx) => (
-                      <div key={idx}>
-                        <strong>{edu.level}</strong>, {edu.institution}
+                      <div key={idx} className={styles.educationItem}>
+                        <strong>
+                          {educationOptions.find(
+                            (option) => option.value === edu.level
+                          )?.label || edu.level}
+                        </strong>
+                        , {edu.institution}
                       </div>
                     ))}
                   </section>
@@ -58,7 +64,7 @@ const RightSection = ({
                   <section className={styles.section} key='Sertificates'>
                     <h3>Сертификаты</h3>
                     {certificates.map((cert, idx) => (
-                      <div key={idx}>
+                      <div key={idx} className={styles.certificatesItem}>
                         <strong>{cert.course}</strong> — {cert.organization}
                         <br />
                         {cert.date && (

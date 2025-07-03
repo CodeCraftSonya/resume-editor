@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useState } from 'react';
 import styles from './CertificatesSection.module.css';
 import Input from '../../Input/Input.tsx';
 import DatePicker from '../../DatePicker/DatePicker.tsx';
@@ -14,8 +14,6 @@ let idCounter = 0;
 const CertificatesSection = ({ onDeleteSection, data, setData }: CerProps) => {
   const [editingCert, setEditingCert] = useState<Certificate | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const modalRef = useRef<HTMLDivElement>(null);
 
   const handleOpenModal = (cert?: Certificate) => {
     setEditingCert(cert || { id: idCounter++, course: '', organization: '' });
@@ -51,21 +49,6 @@ const CertificatesSection = ({ onDeleteSection, data, setData }: CerProps) => {
   const handleDelete = (id: number) => {
     setData(data.filter((c) => c.id !== id));
   };
-
-  const handleClickOutside = (e: MouseEvent) => {
-    if (modalRef.current && !modalRef.current.contains(e.target as Node)) {
-      handleCloseModal();
-    }
-  };
-
-  useEffect(() => {
-    if (isModalOpen) {
-      document.addEventListener('mousedown', handleClickOutside);
-    } else {
-      document.removeEventListener('mousedown', handleClickOutside);
-    }
-    return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, [isModalOpen]);
 
   return (
     <div className={styles.section}>

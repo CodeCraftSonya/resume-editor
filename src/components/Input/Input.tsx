@@ -1,14 +1,7 @@
-import { memo, type ReactNode } from 'react';
+import { memo } from 'react';
 import styles from './Input.module.css';
 import clsx from 'clsx';
-
-type InputProps = React.ComponentPropsWithRef<'input'> & {
-  label?: string;
-  error?: string;
-  info?: string;
-  leftIcon?: ReactNode;
-  rightIcon?: ReactNode;
-};
+import type { InputProps } from './types';
 
 const Input = ({
   label,

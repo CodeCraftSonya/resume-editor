@@ -25,6 +25,7 @@
 }
 
 .text {
+  font-family: var(--font-main);
   max-width: 100%;
   word-wrap: break-word; /* перенос слов */
   white-space: pre-wrap; /* перенос строк и сохранение отступов */

@@ -56,8 +56,14 @@
 }
 
 .skill {
+  font-family: var(--font-main);
   background: #eee;
   padding: 4px 12px;
   border-radius: 20px;
   font-size: 14px;
+}
+
+.educationItem,
+.certificatesItem {
+  font-family: var(--font-main);
 }

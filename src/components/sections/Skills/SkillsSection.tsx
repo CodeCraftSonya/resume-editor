@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useState } from 'react';
 import styles from './SkillsSection.module.css';
 import Button from '../../Buttons/button.tsx';
 import { FaPlus } from 'react-icons/fa6';
@@ -11,7 +11,6 @@ import Modal from '../../modal/Modal.tsx';
 const SkillsSection = ({ onDeleteSection, data, setData }: SkillsProps) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [newSkill, setNewSkill] = useState('');
-  const modalRef = useRef<HTMLDivElement>(null);
 
   const handleAddSkill = () => {
     if (newSkill.trim() && !data.includes(newSkill)) {
@@ -23,23 +22,6 @@ const SkillsSection = ({ onDeleteSection, data, setData }: SkillsProps) => {
   const handleRemoveSkill = (skillToRemove: string) => {
     setData(data.filter((skill) => skill !== skillToRemove));
   };
-
-  const handleClickOutside = (e: MouseEvent) => {
-    if (modalRef.current && !modalRef.current.contains(e.target as Node)) {
-      setIsModalOpen(false);
-      setNewSkill('');
-    }
-  };
-
-  useEffect(() => {
-    if (isModalOpen) {
-      document.addEventListener('mousedown', handleClickOutside);
-    } else {
-      document.removeEventListener('mousedown', handleClickOutside);
-    }
-
-    return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, [isModalOpen]);
 
   return (
     <div className={styles.section}>
