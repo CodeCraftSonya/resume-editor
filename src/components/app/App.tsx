@@ -4,9 +4,10 @@ import { useState } from 'react';
 import RightSection from '../RightSection/RightSection.tsx';
 import type { Certificate } from '../sections/Certificates/types.ts';
 import type { EducationCardData } from '../sections/Education/types.ts';
+import type { Section } from '../LeftSection/types.ts';
 
 const App = () => {
-  const [sections, setSections] = useState<string[]>([]);
+  const [sections, setSections] = useState<Section[]>([]);
   const [name, setName] = useState('');
   const [education, setEducation] = useState<EducationCardData[]>([]);
   const [skills, setSkills] = useState<string[]>([]);

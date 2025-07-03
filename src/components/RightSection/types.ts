@@ -1,5 +1,6 @@
 import type { EducationCardData } from '../sections/Education/types.ts';
 import type { Certificate } from '../sections/Certificates/types.ts';
+import type { Section } from '../LeftSection/types.ts';
 
 export interface RightSectionProps {
   education: EducationCardData[];
@@ -7,5 +8,5 @@ export interface RightSectionProps {
   certificates: Certificate[];
   about: string;
   name: string;
-  activeSections: string[];
+  activeSections: Section[];
 }

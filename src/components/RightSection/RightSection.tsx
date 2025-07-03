@@ -58,10 +58,10 @@ const RightSection = ({
                   </section>
                 )
               );
-            case 'Sertificates':
+            case 'Certificates':
               return (
                 certificates.length > 0 && (
-                  <section className={styles.section} key='Sertificates'>
+                  <section className={styles.section} key='Сertificates'>
                     <h3>Сертификаты</h3>
                     {certificates.map((cert, idx) => (
                       <div key={idx} className={styles.certificatesItem}>

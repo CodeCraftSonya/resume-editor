@@ -21,7 +21,7 @@ export const sectionMap: Record<
   Skills: (onDelete, data, setData) => (
     <SkillsSection onDeleteSection={onDelete} data={data} setData={setData} />
   ),
-  Sertificates: (onDelete, data, setData) => (
+  Certificates: (onDelete, data, setData) => (
     <CertificatesSection
       onDeleteSection={onDelete}
       data={data}

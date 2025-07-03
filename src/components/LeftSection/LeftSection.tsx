@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { DragDropContext, Draggable, Droppable } from '@hello-pangea/dnd';
 import Input from '../Input/Input.tsx';
 import { IoDownloadOutline } from 'react-icons/io5';
-import type { LeftSectionProps } from './types';
+import type { LeftSectionProps, Section, SectionPropsMap } from './types';
 import { sectionMap } from '../../constants/sectionMap.tsx';
 
 const LeftSection = ({
@@ -22,16 +22,14 @@ const LeftSection = ({
   about,
   setAbout
 }: LeftSectionProps) => {
-  const [selected, setSelected] = useState('');
+  const [selected, setSelected] = useState<Section | ''>('');
 
-  const props = {
+  const props: SectionPropsMap = {
     Education: [education, setEducation],
     Skills: [skills, setSkills],
-    Sertificates: [certificates, setCertificates],
+    Certificates: [certificates, setCertificates],
     About: [about, setAbout]
   };
-
-  type SectionKey = keyof typeof props;
 
   const handleAdd = () => {
     if (selected && !sections.includes(selected)) {
@@ -63,12 +61,12 @@ const LeftSection = ({
         id='sectionSelect'
         label='Добавить секцию'
         value={selected}
-        onChange={(e) => setSelected(e.target.value)}
+        onChange={(e) => setSelected(e.target.value as Section | '')}
         options={[
           { label: 'Не выбрано', value: '' },
           { label: 'Образование', value: 'Education' },
           { label: 'Навыки', value: 'Skills' },
-          { label: 'Сертификаты', value: 'Sertificates' },
+          { label: 'Сертификаты', value: 'Certificates' },
           { label: 'Обо мне', value: 'About' }
         ]}
         rightIcon={<img src='/icons/chevron-down.svg' alt='Стрелка вниз' />}
@@ -90,7 +88,7 @@ const LeftSection = ({
               ref={provided.innerRef}
               {...provided.droppableProps}
             >
-              {sections.map((key: SectionKey, index) => {
+              {sections.map((key: Section, index) => {
                 return (
                   <Draggable key={key} draggableId={key} index={index}>
                     {(provided) => (
